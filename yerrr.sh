@@ -29,11 +29,14 @@ echo " ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝     �
                                                           
 # check if homebrew installed, otherwise install it
 if test ! $(which brew); then
-    echo "installing homebrew.."
+    echo "installing homebrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    else
+    echo "homebrew already installed"
 fi
 
 # update homebrew
+echo "updating homebrew"
 brew update
 
 # list of packages i use
@@ -49,7 +52,7 @@ packages=(
 )
 
 # install packages above
-echo "installing packages.."
+echo "installing packages"
 brew install ${packages[@]}
 
 # install oh-my-zsh to manage zsh
@@ -73,13 +76,14 @@ apps=(
 )
 
 # install apps above
-echo "intalling apps.."
+echo "intalling apps"
 brew install --cask ${apps[@]}
 
-echo "cleaning up.."
+echo "cleaning up"
 brew cleanup
 
-echo "configuring mac settings.."
+echo "configuring mac settings"
+echo "some mac settings require restart to take effect"
 # enable tap to click
 defaults write com.apple.AppleMultitouchTrackpad Click -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
