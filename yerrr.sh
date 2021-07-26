@@ -37,7 +37,7 @@ fi
 brew update
 
 # list of packages i use
-PACKAGES=(
+packages=(
     fzf
     go
     jq
@@ -50,14 +50,14 @@ PACKAGES=(
 
 # install packages above
 echo "installing packages.."
-brew install ${PACKAGES[@]}
+brew install ${packages[@]}
 
 # install oh-my-zsh to manage zsh
 echo "installing oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# list of casks (apps) i use
-CASKS=(
+# list of apps i use
+apps=(
     bitwarden
     docker
     firefox
@@ -72,9 +72,9 @@ CASKS=(
     zoom
 )
 
-# install casks above
+# install apps above
 echo "intalling apps.."
-brew install --cask ${CASKS[@]}
+brew install --cask ${apps[@]}
 
 echo "cleaning up.."
 brew cleanup
