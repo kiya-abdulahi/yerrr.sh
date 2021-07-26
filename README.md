@@ -66,3 +66,5 @@ chmod +x yerrr.sh
 ## Caveats
 
 Be on the lookout for the Caveats homebrew spits out with certain packages. For example, [nvm](https://github.com/nvm-sh/nvm) makes it a point to create a `~/.nvm` directory and add it to your desired shells' (bash or zsh) path.
+
+Some macOS settings require a restart when changing via `defaults write..`. 
