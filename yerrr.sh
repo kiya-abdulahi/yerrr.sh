@@ -67,6 +67,7 @@ apps=(
     insomnia
     iterm2
     kap
+    notion
     slack
     spectacle
     spotify

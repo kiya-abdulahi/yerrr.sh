@@ -10,7 +10,7 @@ That being said, there are a few different apps/software I use for my dev enviro
 
 > The Missing package Manager for macOS (or Linux)
 
-There is a sweet package manager called [homebrew](brew.sh). It allows you to install stuff you use everyday with a simple command. For example if you want to install [jq](https://stedolan.github.io/jq/):
+There is a sweet package manager for macOS called [homebrew](brew.sh). It allows you to install stuff you use everyday with a simple command. For example if you want to install [jq](https://stedolan.github.io/jq/):
 
 ```
 brew install jq
