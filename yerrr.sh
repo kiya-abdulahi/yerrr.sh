@@ -62,10 +62,10 @@ for package in ${packages[@]}; do
 done
 
 echo "installing oh-my-zsh to manage zsh config"
-if [ -d ~/.oh-my-zsh ]; then
+if test -d ~/.oh-my-zsh; then
     echo "oh-my-zsh already exists!"
 else
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    # sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     echo "successfully installed oh-my-zsh!"
 fi
 
