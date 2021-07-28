@@ -27,19 +27,18 @@ echo "██║███╗██║██╔══██║██║   ██�
 echo "╚███╔███╔╝██║  ██║╚██████╔╝    ██████╔╝██║███████║  ██╗"
 echo " ╚══╝╚══╝ ╚═╝  ╚═╝ ╚═════╝     ╚═════╝ ╚═╝╚══════╝  ╚═╝"
                                                           
-# check if homebrew installed, otherwise install it
 if test ! $(which brew); then
     echo "installing homebrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    else
-    echo "homebrew already installed"
+    echo "successfully installed homebrew!"
+
+else
+    echo "homebrew already exists!"
+    echo "updating homebrew"
+    brew update
+    echo "sucessfully updated homebrew!"
 fi
 
-# update homebrew
-echo "updating homebrew"
-brew update
-
-# list of packages i use
 packages=(
     fzf
     go
@@ -48,18 +47,29 @@ packages=(
     postgresql
     tree
     vercel-cli
+    yarn
     zsh
 )
 
-# install packages above
 echo "installing packages"
-brew install ${packages[@]}
+for package in ${packages[@]}; do
+    if test "$(brew ls --versions $package)"; then
+        echo "$package already exists!"
+    else
+        echo "installing $package"
+        brew install $package
+        echo "successfully installed $package!"
+    fi
+done
 
-# install oh-my-zsh to manage zsh
-echo "installing oh-my-zsh"
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+echo "installing oh-my-zsh to manage zsh config"
+if [ -d ~/.oh-my-zsh ]; then
+    echo "oh-my-zsh already exists!"
+else
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    echo "successfully installed oh-my-zsh!"
+fi
 
-# list of apps i use
 apps=(
     bitwarden
     docker
@@ -76,18 +86,32 @@ apps=(
     zoom
 )
 
-# install apps above
-echo "intalling apps"
-brew install --cask ${apps[@]}
+echo "installing apps"
+for app in ${apps[@]}; do
+    if test ! "$(brew info $app | grep "Not installed")"; then
+        echo "$app already exists!"
+    else
+        echo "installing $app"
+        brew install --cask $app
+        echo "successfully installed $app!"
+    fi
+done
 
-echo "cleaning up"
+echo "cleaning up old versions of brew formulae"
 brew cleanup
+echo "succesfully completed brew cleanup!"
 
 echo "configuring mac settings"
-echo "some mac settings require restart to take effect"
-# enable tap to click
-defaults write com.apple.AppleMultitouchTrackpad Click -bool true
-defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+echo "enabling tap to click"
+if test $(defaults read com.apple.AppleMultitouchTrackpad Click); then
+    echo "tap to click already enabled"
+else
+    echo "enabling tap to click"
+    defaults write com.apple.AppleMultitouchTrackpad Click -bool true
+    defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+    echo "succesfully enabled tap to click!"
+    echo "some mac settings require restart to take effect"
+fi
 
 echo "you're all set"
 echo ""
