@@ -31,7 +31,6 @@ if test ! $(which brew); then
     echo "installing homebrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     echo "successfully installed homebrew!"
-
 else
     echo "homebrew already exists!"
     echo "updating homebrew"
