@@ -77,6 +77,7 @@ apps=(
     iterm2
     kap
     notion
+    obs
     slack
     spectacle
     spotify
